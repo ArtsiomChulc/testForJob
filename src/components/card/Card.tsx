@@ -1,13 +1,22 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import s from './card.module.scss';
 import foto1 from '../../assets/img/maxresdefault.jpg'
 import {Button} from "@mui/material";
 
-type CardPropsType = {
+type dataType = {
+    id: string
+    updated_at: string
+    img: string
     description: string
 }
 
+type CardPropsType = {
+    description: string
+    data: dataType[]
+}
+
 const Card = (props: CardPropsType) => {
+
     return (
         <div className={s.container}>
             <div className={s.wrapper}>
