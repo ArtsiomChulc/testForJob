@@ -3,4 +3,5 @@ export type CardType =  {
     updated_at: Date
     img: string
     description: string
+    price: number
 }
