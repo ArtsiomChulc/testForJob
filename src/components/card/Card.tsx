@@ -8,7 +8,6 @@ type CardPropsType = {
 }
 
 const Card = (props: CardPropsType) => {
-
     return (
         <>
             {
