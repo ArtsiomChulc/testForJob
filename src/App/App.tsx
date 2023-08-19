@@ -13,18 +13,14 @@ import {Route, Routes} from "react-router-dom";
 
 function App() {
     const [cart, setCart] = useState<CardType[]>([])
-    const [quantity, setQuantity] = useState<QuantityState>({})
+    // const [quantity, setQuantity] = useState<QuantityState>({})
+
     const addToCart = (el: CardType[], productId: string) => {
-        const isProductInCart = cart.some(item => item.id === productId);
-        if (isProductInCart) {
-            alert('Товар уже в корзине!');
-            return;
-        }
         setCart([...cart, ...el])
-        setQuantity((prevQuantity) => ({
-            ...prevQuantity,
-            [productId]: (prevQuantity[productId] || 0) + 1,
-        }));
+        // setQuantity((prevQuantity) => ({
+        //     ...prevQuantity,
+        //     [productId]: (prevQuantity[productId] || 0) + 1,
+        // }));
     }
 
     // const handleAddToCart = (productId: string) => {
@@ -34,19 +30,17 @@ function App() {
     //     }));
     // };
 
-    const handleRemoveFromCart = (productId: string) => {
-        const updateCart = cart.filter(item => item.id !== productId)
-        setQuantity((prevQuantity) => ({
-            ...prevQuantity,
-            [productId]: Math.max((prevQuantity[productId] || 0) - 1, 0),
-        }));
-        setCart(updateCart)
-    };
+    // const handleRemoveFromCart = (productId: string) => {
+    //     setQuantity((prevQuantity) => ({
+    //         ...prevQuantity,
+    //         [productId]: Math.max((prevQuantity[productId] || 0) - 1, 0),
+    //     }));
+    // };
 
-    const totalCost = cart.reduce((total, pr) => {
-        const productQuantity = quantity[pr.id] || 0;
-        return total + pr.price * productQuantity;
-    }, 0);
+    // const totalCost = cart.reduce((total, pr) => {
+    //     const productQuantity = quantity[pr.id] || 0;
+    //     return total + pr.price * productQuantity;
+    // }, 0);
 
     const data = useSelector<AppRootStateType, CardType[]>(state => state.cards)
     const dispatch = useAppDispatch()
@@ -64,16 +58,22 @@ function App() {
     }
     return (
         <div className={s.App}>
-            <Header cart={cart} totalCost={totalCost}/>
+            <Header
+                cart={cart}
+                // totalCost={totalCost}
+            />
             <Routes>
-                <Route path={'/'} element={<Card data={data} addToCart={addToCart}/>}/>
+                <Route path={'/'} element={<Card
+                    data={data}
+                    addToCart={addToCart}
+                />}/>
 
                 <Route path={'/shoppingCart'} element={<ShoppingCart
                     product={cart}
-                    handleAddToCart={addToCart}
-                    handleRemoveFromCart={handleRemoveFromCart}
-                    quantity={quantity}
-                    totalCost={totalCost}
+                    // handleAddToCart={handleAddToCart}
+                    // handleRemoveFromCart={handleRemoveFromCart}
+                    // quantity={quantity}
+                    // totalCost={totalCost}
                 />}/>
             </Routes>
         </div>
