@@ -19,7 +19,7 @@ const Header = (props: HeaderPropsType) => {
                 <span className={s.menuTitle}>О нас</span>
             </div>
             <div className={s.wrapBtn}>
-                <span>{props.cart.length}</span>
+                <span>Amount: {props.cart.length}</span>
                 <Link to={'/shoppingCart'}>
                     <IconButton color="primary" aria-label="add to shopping cart">
                         <AddShoppingCartIcon/>

@@ -5,7 +5,7 @@ import {CardType} from "../../type/types";
 
 type CardPropsType = {
     data: CardType[] | null
-    addToCart: (x: CardType[]) => void
+    addToCart: (x: CardType[], id: string) => void
 }
 
 const Card = (props: CardPropsType) => {
@@ -13,8 +13,8 @@ const Card = (props: CardPropsType) => {
         <>
             {
                 props.data?.map(el => {
-                    const addToCart = (el: CardType[]) => {
-                        props.addToCart(el)
+                    const addToCart = (el: CardType[], id: string) => {
+                        props.addToCart(el, id)
                     }
                     return (
                             <div key={el.id} className={s.container}>
@@ -32,7 +32,7 @@ const Card = (props: CardPropsType) => {
                                         <span>Price: {el.price} $</span>
                                     </div>
                                     <Button
-                                        onClick={() => addToCart([el])}
+                                        onClick={() => addToCart([el], el.id)}
                                         className={s.btn}
                                         variant="outlined"
                                         size="medium"

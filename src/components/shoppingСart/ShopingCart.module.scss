@@ -6,6 +6,9 @@
   .cartContainer {
     display: flex;
     align-items: center;
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    border-bottom: 2px solid gray;
 
     .product {
       display: flex;
@@ -16,7 +19,8 @@
       //margin: 10px 0 20px 40px;
 
       .imgBlock {
-        width: 100px;
+        align-self: center;
+        width: 130px;
 
         img {
           width: 100%;
@@ -30,6 +34,7 @@
 
       .descBlock {
         display: flex;
+        flex-direction: column;
         flex: 0 1 200px;
         gap: 10px;
       }

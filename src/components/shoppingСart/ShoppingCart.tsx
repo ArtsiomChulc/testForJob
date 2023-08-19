@@ -4,7 +4,7 @@ import s from './ShopingCart.module.scss'
 
 type ShoppingCartPropsType = {
     product: CardType[]
-    handleAddToCart: (productId: string) => void
+    handleAddToCart: (el: CardType[], productId: string) => void
     handleRemoveFromCart: (productId: string) => void
     quantity: QuantityState
     totalCost: number
@@ -35,7 +35,7 @@ const ShoppingCart = (props: ShoppingCartPropsType) => {
                         <div className={s.delAddProductBlock}>
                             <button onClick={() => props.handleRemoveFromCart(pr.id)}>-</button>
                             <span className={s.quantity}>{productQuantity}</span>
-                            <button onClick={() => props.handleAddToCart(pr.id)}>+</button>
+                            <button onClick={() => props.handleAddToCart([pr], pr.id)}>+</button>
                         </div>
                     </div>
                 )
