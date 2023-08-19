@@ -4,4 +4,5 @@ export type CardType =  {
     img: string
     description: string
     price: number
+    brand?: string
 }
