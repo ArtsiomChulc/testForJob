@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import s from './App.module.css';
 import ShoppingCart, {QuantityState} from "../components/shoppingСart/ShoppingCart";
-import Loader from "../common/Loader";
+import Loader from "../common/loader/Loader";
 import {AppRootStateType, useAppDispatch} from "../App/store";
 import {fetchCards} from "../components/card/cardsReduser";
 import {useSelector} from "react-redux";
@@ -9,10 +9,13 @@ import Card from "../components/card/Card";
 import {CardType} from "../type/types";
 import Header from "../components/Header/Header";
 import {Route, Routes} from "react-router-dom";
+import PopUp from "../common/popup/PopUp";
 
 
 function App() {
     const [cart, setCart] = useState<CardType[]>([])
+
+    const [showPopUp, setShowPopUp] = useState(false);
 
     // for ShoppingCart
     let [quantity, setQuantity] = useState<QuantityState>({})
@@ -75,7 +78,7 @@ function App() {
     const addToCart = (el: CardType[], productId: string) => {
         const isProductInCart = cart.some((item) => item.id === productId);
         if (isProductInCart) {
-            alert('Товар уже в корзине')
+            setShowPopUp(true)
         } else {
             setCart([...cart, ...el]);
             setQuantity((prevQuantity) => ({
@@ -83,6 +86,10 @@ function App() {
                 [productId]: 1,
             }));
         }
+    };
+
+    const handleClosePopUp = () => {
+        setShowPopUp(false);
     };
 
     useEffect(() => {
@@ -97,12 +104,14 @@ function App() {
     }
     return (
         <div className={s.App}>
+            {showPopUp && <PopUp onClose={handleClosePopUp} />}
             <Header
                 cart={cart}
                 totalCost={totalCost}
             />
             <Routes>
-                <Route path={'/'} element={<Card
+                <Route path={'/product'} element={<Card
+                    disabled={showPopUp}
                     data={data}
                     addToCart={addToCart}
                 />}/>

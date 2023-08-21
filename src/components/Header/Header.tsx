@@ -15,8 +15,8 @@ const Header = (props: HeaderPropsType) => {
         <div className={s.headerContainer}>
             <div className={s.headerMenu}>
                 <Link to={'/'} className={s.menuTitle}>Главная</Link>
-                <span className={s.menuTitle}>Товары</span>
-                <span className={s.menuTitle}>О нас</span>
+                <Link to={'/product'} className={s.menuTitle}>Товары</Link>
+                <Link to={'/about'} className={s.menuTitle}>О нас</Link>
             </div>
             <div className={s.wrapBtn}>
                 <span>Amount: <span className={s.info}>{props.cart.length}</span></span>

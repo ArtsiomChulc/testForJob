@@ -6,6 +6,7 @@ import {CardType} from "../../type/types";
 type CardPropsType = {
     data: CardType[] | null
     addToCart: (x: CardType[], id: string) => void
+    disabled: boolean
 }
 
 const Card = (props: CardPropsType) => {
@@ -17,7 +18,7 @@ const Card = (props: CardPropsType) => {
                         props.addToCart(el, id)
                     }
                     return (
-                            <div key={el.id} className={s.container}>
+                            <div key={el.id} className={`${s.container} ${props.disabled ? s.disabled : ''}`}>
                                 <div className={s.wrapper}>
                                     <div className={s.imgBlock}>
                                         <img src={el.img} alt="noteBook"/>
@@ -32,6 +33,7 @@ const Card = (props: CardPropsType) => {
                                         <span>Price: {el.price} $</span>
                                     </div>
                                     <Button
+                                        disabled={props.disabled}
                                         onClick={() => addToCart([el], el.id)}
                                         className={s.btn}
                                         variant="outlined"
