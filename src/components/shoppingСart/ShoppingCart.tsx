@@ -17,7 +17,7 @@ export type QuantityState = {
 
 const ShoppingCart = (props: ShoppingCartPropsType) => {
 
-    if (props.product.length === 0) return <div style={{margin: '50px auto', fontSize: '34px', fontStyle: 'italic'}}>No product in cart</div>
+    if (props.product.length === 0) return <div style={{margin: '250px auto', fontSize: '34px', fontStyle: 'italic'}}>No product in cart</div>
     return (
         <div className={s.wrapperCart}>
             {props.product.map(pr => {

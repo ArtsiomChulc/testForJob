@@ -5,6 +5,11 @@
   margin: 80px auto;
   transition: opacity .2s ease-out;
 
+
+  @media (max-width: 647px) {
+    margin: 120px auto;
+  }
+
   &.disabled {
     opacity: 0.7;
   }
