@@ -19,13 +19,13 @@ const Header = (props: HeaderPropsType) => {
                 <span className={s.menuTitle}>О нас</span>
             </div>
             <div className={s.wrapBtn}>
-                <span>Amount: {props.cart.length}</span>
+                <span>Amount: <span className={s.info}>{props.cart.length}</span></span>
                 <Link to={'/shoppingCart'}>
                     <IconButton color="primary" aria-label="add to shopping cart">
                         <AddShoppingCartIcon/>
                     </IconButton>
                 </Link>
-                <span>Total: {props.totalCost}</span>
+                <span>Total: <span className={s.info}>{props.totalCost ? props.totalCost : 0}</span></span>
             </div>
         </div>
     );

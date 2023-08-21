@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import s from './App.module.css';
-import ShoppingCart, {QuantityState} from "../components/shoppingСart/ShoppingCart";
+import ShoppingCart from "../components/shoppingСart/ShoppingCart";
 import Loader from "../common/Loader";
 import {AppRootStateType, useAppDispatch} from "../App/store";
 import {fetchCards} from "../components/card/cardsReduser";
@@ -13,41 +13,27 @@ import {Route, Routes} from "react-router-dom";
 
 function App() {
     const [cart, setCart] = useState<CardType[]>([])
-    // const [quantity, setQuantity] = useState<QuantityState>({})
+
+    useEffect(() => {
+        // Retrieve saved cart items from localStorage
+        const savedCart = JSON.parse(localStorage.getItem('cart') || '[]');
+        setCart(savedCart);
+    }, []);
+
+    useEffect(() => {
+        // Save cart items to localStorage whenever the cart changes
+        localStorage.setItem('cart', JSON.stringify(cart));
+    }, [cart]);
 
     const addToCart = (el: CardType[], productId: string) => {
         setCart([...cart, ...el])
-        // setQuantity((prevQuantity) => ({
-        //     ...prevQuantity,
-        //     [productId]: (prevQuantity[productId] || 0) + 1,
-        // }));
     }
-
-    // const handleAddToCart = (productId: string) => {
-    //     setQuantity((prevQuantity) => ({
-    //         ...prevQuantity,
-    //         [productId]: (prevQuantity[productId] || 0) + 1,
-    //     }));
-    // };
-
-    // const handleRemoveFromCart = (productId: string) => {
-    //     setQuantity((prevQuantity) => ({
-    //         ...prevQuantity,
-    //         [productId]: Math.max((prevQuantity[productId] || 0) - 1, 0),
-    //     }));
-    // };
-
-    // const totalCost = cart.reduce((total, pr) => {
-    //     const productQuantity = quantity[pr.id] || 0;
-    //     return total + pr.price * productQuantity;
-    // }, 0);
 
     const data = useSelector<AppRootStateType, CardType[]>(state => state.cards)
     const dispatch = useAppDispatch()
 
     useEffect(() => {
-        const thunk = fetchCards()
-        dispatch(thunk)
+        dispatch(fetchCards())
     }, []);
 
 

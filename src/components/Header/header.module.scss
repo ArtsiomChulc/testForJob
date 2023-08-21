@@ -45,6 +45,14 @@
     font-size: 12px;
     padding-right: 15px;
 
+    .info {
+      display: inline-block;
+      border: 1px solid gray;
+      border-radius: 50%;
+      background-color: #faf7f7;
+      padding: 5px 10px;
+    }
+
     &:last-child {
       margin-right: 15px;
     }

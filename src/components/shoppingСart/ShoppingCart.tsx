@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {CardType} from "../../type/types";
 import s from './ShopingCart.module.scss'
 
@@ -17,7 +17,18 @@ export type QuantityState = {
 const ShoppingCart = (props: ShoppingCartPropsType) => {
 
     let [quantity, setQuantity] = useState<QuantityState>({'': 1})
-    console.log(quantity)
+    useEffect(() => {
+        // Получение сохраненных данных из localStorage
+        const savedQuantity = JSON.parse(localStorage.getItem('quantity') || '{}');
+
+        // Восстановление сохраненных данных
+        setQuantity(savedQuantity);
+    }, []);
+
+    useEffect(() => {
+        // Сохранение данных в localStorage при каждом изменении quantity
+        localStorage.setItem('quantity', JSON.stringify(quantity));
+    }, [quantity]);
 
     const addProductHandler = (productId: string) => {
         setQuantity((prevQuantity) => ({
