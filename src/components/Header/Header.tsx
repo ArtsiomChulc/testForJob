@@ -25,7 +25,7 @@ const Header = (props: HeaderPropsType) => {
                         <AddShoppingCartIcon/>
                     </IconButton>
                 </Link>
-                <span>Total: <span className={s.info}>{props.totalCost ? props.totalCost : 0}</span></span>
+                <span>Total: <span className={s.info}>{props.totalCost ? props.totalCost : 0} $</span></span>
             </div>
         </div>
     );
