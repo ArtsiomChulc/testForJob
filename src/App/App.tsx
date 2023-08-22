@@ -10,7 +10,7 @@ import {CardType} from "../type/types";
 import Header from "../components/Header/Header";
 import {Route, Routes} from "react-router-dom";
 import PopUp from "../common/popup/PopUp";
-import OrderGoods from "../common/orderGoods/OrderGoods";
+import {ContactForm} from "../common/orderGoods/OrderGoods";
 
 
 function App() {
@@ -117,7 +117,7 @@ function App() {
                     addToCart={addToCart}
                 />}/>
 
-                <Route path={'/checkout'} element={<OrderGoods/>}/>
+                <Route path={'/checkout'} element={<ContactForm/>}/>
 
                 <Route path={'/shoppingCart'} element={<ShoppingCart
                     product={cart}

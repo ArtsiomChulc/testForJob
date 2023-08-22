@@ -3,11 +3,13 @@ import {ThunkAction, ThunkDispatch} from "redux-thunk";
 import {AnyAction, combineReducers} from "redux";
 import {useDispatch} from "react-redux";
 import {cardsReducer} from "../components/card/cardsReduser";
+import { reducer as formReducer } from 'redux-form'
 
 // объединяя reducer-ы с помощью combineReducers,
 // мы задаём структуру нашего единственного объекта-состояния
 const rootReducer = combineReducers({
-    cards: cardsReducer
+    cards: cardsReducer,
+    form: formReducer
 });
 
 // непосредственно создаём store / redux-toolkit

@@ -1,11 +1,32 @@
-.orderContainer {
+.orderWrapper {
   margin: 200px auto;
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
+  .orderContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    border: 1px solid #c9c5c5;
+    padding: 20px 30px;
+
+    @media (max-width: 701px) {
+      margin: 40px auto;
+    }
+
+    .label {
+      color: blue;
+    }
+
+    input {
+      height: 36px;
+
+      &:focus {
+        outline-color: blue;
+      }
+    }
 
     button {
       height: 56px;
       margin-top: 10px;
     }
+  }
 }
+

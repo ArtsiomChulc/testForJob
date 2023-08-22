@@ -3,6 +3,12 @@
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
+
+  @media (max-width: 701px) {
+    align-content: center;
+    justify-content: center;
+  }
+
   .wrapperCart {
     display: flex;
     flex-direction: column;
@@ -74,8 +80,7 @@
   .formContainer {
     margin-right: 40px;
     margin-left: 40px;
-    align-self: center;
-    justify-self: center;
+
   }
 }
 

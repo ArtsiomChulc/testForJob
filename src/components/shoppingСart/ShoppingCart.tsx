@@ -1,7 +1,7 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import {CardType} from "../../type/types";
 import s from './ShopingCart.module.scss'
-import OrderGoods from "../../common/orderGoods/OrderGoods";
+import {ContactForm} from "../../common/orderGoods/OrderGoods";
 
 type ShoppingCartPropsType = {
     product: CardType[]
@@ -46,7 +46,7 @@ const ShoppingCart = (props: ShoppingCartPropsType) => {
                 <span className={s.total}>Total: {props.totalCost} $</span>
             </div>
             <div className={s.formContainer}>
-                <OrderGoods/>
+                <ContactForm/>
             </div>
         </div>
     );
