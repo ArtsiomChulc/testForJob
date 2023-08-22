@@ -16,6 +16,7 @@ const Header = (props: HeaderPropsType) => {
             <div className={s.headerMenu}>
                 <Link to={'/'} className={s.menuTitle}>Главная</Link>
                 <Link to={'/product'} className={s.menuTitle}>Товары</Link>
+                <Link to={'/checkout'} className={s.menuTitle}>Оформить заказ</Link>
                 <Link to={'/about'} className={s.menuTitle}>О нас</Link>
             </div>
             <div className={s.wrapBtn}>
