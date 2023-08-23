@@ -10,11 +10,9 @@ import {CardType} from "../type/types";
 import Header from "../components/Header/Header";
 import {Route, Routes} from "react-router-dom";
 import PopUp from "../common/popup/PopUp";
-import {ContactForm} from "../common/orderGoodsForm/OrderGoods";
 import {GlobalToast} from "../common/GlobalToast/GlobalToast";
 import "react-toastify/dist/ReactToastify.css";
-import {toast} from "react-toastify";
-import {tab} from "@testing-library/user-event/dist/tab";
+import CheckOut from "../components/checkOut/CheckOut";
 
 
 function App() {
@@ -37,7 +35,7 @@ function App() {
 
     const handleRemoveFromCart = (productId: string) => {
         setQuantity((prevQuantity) => {
-            const updatedQuantity = { ...prevQuantity };
+            const updatedQuantity = {...prevQuantity};
             const updatedProductQuantity = Math.max((prevQuantity[productId] || 0) - 1, 0);
             if (updatedProductQuantity === 0) {
                 delete updatedQuantity[productId];
@@ -122,7 +120,12 @@ function App() {
                     addToCart={addToCart}
                 />}/>
 
-                <Route path={'/checkout'} element={<ContactForm/>}/>
+                <Route path={'/checkout'} element={<CheckOut
+                    disabled={showPopUp}
+                    data={data}
+                    addToCart={addToCart}
+                    product={cart}
+                />}/>
 
                 <Route path={'/shoppingCart'} element={<ShoppingCart
                     product={cart}

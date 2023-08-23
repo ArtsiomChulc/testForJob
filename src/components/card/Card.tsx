@@ -3,7 +3,7 @@ import s from './card.module.scss';
 import {Button} from "@mui/material";
 import {CardType} from "../../type/types";
 
-type CardPropsType = {
+export type CardPropsType = {
     data: CardType[] | null
     addToCart: (x: CardType[], id: string) => void
     disabled: boolean

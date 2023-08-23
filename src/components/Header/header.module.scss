@@ -9,7 +9,7 @@
   flex-wrap: wrap;
   z-index: 5;
 
-  @media (max-width: 647px) {
+  @media (max-width: 843px) {
     justify-content: center;
     padding: 20px 0;
   }
@@ -54,7 +54,7 @@
     padding-right: 15px;
     padding-left: 30px;
 
-    @media (max-width: 647px) {
+    @media (max-width: 843px) {
       margin-top: 10px;
     }
 
