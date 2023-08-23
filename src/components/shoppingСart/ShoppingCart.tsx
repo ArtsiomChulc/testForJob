@@ -1,7 +1,7 @@
 import React from 'react';
 import {CardType} from "../../type/types";
 import s from './ShopingCart.module.scss'
-import {ContactForm} from "../../common/orderGoods/OrderGoods";
+import {ContactForm} from "../../common/orderGoodsForm/OrderGoods";
 
 type ShoppingCartPropsType = {
     product: CardType[]

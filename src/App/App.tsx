@@ -10,7 +10,11 @@ import {CardType} from "../type/types";
 import Header from "../components/Header/Header";
 import {Route, Routes} from "react-router-dom";
 import PopUp from "../common/popup/PopUp";
-import {ContactForm} from "../common/orderGoods/OrderGoods";
+import {ContactForm} from "../common/orderGoodsForm/OrderGoods";
+import {GlobalToast} from "../common/GlobalToast/GlobalToast";
+import "react-toastify/dist/ReactToastify.css";
+import {toast} from "react-toastify";
+import {tab} from "@testing-library/user-event/dist/tab";
 
 
 function App() {
@@ -95,6 +99,7 @@ function App() {
 
     useEffect(() => {
         dispatch(fetchCards())
+
     }, []);
 
 
@@ -105,7 +110,7 @@ function App() {
     }
     return (
         <div className={s.App}>
-            {showPopUp && <PopUp onClose={handleClosePopUp} />}
+            {showPopUp && <PopUp onClose={handleClosePopUp} text={'Товар уже в корзине'}/>}
             <Header
                 cart={cart}
                 totalCost={totalCost}
@@ -128,6 +133,7 @@ function App() {
                     setQuantity={setQuantity}
                 />}/>
             </Routes>
+            <GlobalToast/>
         </div>
     );
 }

@@ -1,7 +1,8 @@
 .wrapWrapper {
   width: 100%;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
+  gap: 150px;
   flex-wrap: wrap;
 
   @media (max-width: 701px) {
@@ -80,7 +81,8 @@
   .formContainer {
     margin-right: 40px;
     margin-left: 40px;
-
+    //width: 100%;
+    //flex: 0 1 30%;
   }
 }
 

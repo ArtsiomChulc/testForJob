@@ -3,6 +3,7 @@ import s from './popUp.module.scss';
 
 type PropsType = {
     onClose: () => void
+    text: string
 }
 
 
@@ -21,7 +22,7 @@ const PopUp = (props: PropsType) => {
 
     return (
         <div className={s.PopUp}>
-            <p>Товар уже в корзине</p>
+            <p>{props.text}</p>
             <button onClick={onClose}>Закрыть</button>
         </div>
     );
