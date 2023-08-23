@@ -16,7 +16,7 @@ export type CardType =  {
      id: string | null
      name: string | null
      phone: string | null
-     prices: Array<string> | null
+     prices: Array<number> | null
      primaryKey: string
      surname: string
  }

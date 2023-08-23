@@ -17,14 +17,16 @@ const Admin = () => {
     const brand = adminData.map(br => {
         return br.brands
     })
-    console.log(brand)
+
+    const priceArr = adminData.map(pr => pr.prices?.reduce((a, b) => a + b))
+
     if (adminData.length === 0) return <Loader/>
 
     return (
         <div className={s.adminContainer}>
             {adminData.map(el => {
                 return (
-                    <div className={s.adminInfo}>
+                    <div key={el.id} className={s.adminInfo}>
                         <span>Имя: {el.name}</span>
                         <span>Фамилия: {el.surname}</span>
                         <span>Адрес: {el.address}</span>
@@ -39,6 +41,7 @@ const Admin = () => {
                     </div>
                 )
             })}
+            <div>{priceArr}</div>
         </div>
     );
 };
