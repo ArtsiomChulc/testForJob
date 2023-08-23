@@ -1,0 +1,19 @@
+.adminContainer {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 150px;
+
+  .adminInfo {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid gray;
+    padding: 15px;
+
+    span {
+      &:not(:last-child) {
+        padding-bottom: 10px;
+    }
+    }
+  }
+}

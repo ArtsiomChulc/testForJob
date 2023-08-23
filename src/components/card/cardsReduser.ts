@@ -1,9 +1,7 @@
 import {createSlice} from "@reduxjs/toolkit";
 import {CardType} from "../../type/types";
 import {createAppAsyncThunk} from "../../utils/createAppAsyncThunk";
-import {appActions} from "../../App/appReducer";
 import {supabase} from "../../dataBase/createClient";
-import {toast} from "react-toastify";
 
 const slice = createSlice({
     name: "cards",

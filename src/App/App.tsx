@@ -13,6 +13,7 @@ import PopUp from "../common/popup/PopUp";
 import {GlobalToast} from "../common/GlobalToast/GlobalToast";
 import "react-toastify/dist/ReactToastify.css";
 import CheckOut from "../components/checkOut/CheckOut";
+import Admin from "../common/admin/Admin";
 
 
 function App() {
@@ -126,6 +127,8 @@ function App() {
                     addToCart={addToCart}
                     product={cart}
                 />}/>
+
+                <Route path={'/admin'} element={<Admin/>}/>
 
                 <Route path={'/shoppingCart'} element={<ShoppingCart
                     product={cart}

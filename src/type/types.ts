@@ -10,3 +10,13 @@ export type CardType =  {
     address?: string
     phone?: string
 }
+ export type AdminType = {
+     address: string | null
+     brands: Array<string> | null
+     id: string | null
+     name: string | null
+     phone: string | null
+     prices: Array<string> | null
+     primaryKey: string
+     surname: string
+ }

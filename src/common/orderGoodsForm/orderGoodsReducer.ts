@@ -33,6 +33,7 @@ export const sendContactForm = createAppAsyncThunk<any, any>("contactForm/sendCo
                     surname: formData.surname,
                     phone: formData.phone,
                     brands: product.map(br => br.brand),
+                    prices: product.map(pr => pr.price)
                 })
                 .select()
             toast.success('Мы с вами свяжемся')

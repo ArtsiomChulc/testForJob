@@ -6,6 +6,7 @@ import {cardsReducer} from "../components/card/cardsReduser";
 import { reducer as formReducer } from 'redux-form'
 import {orderGoodsReducer} from "../common/orderGoodsForm/orderGoodsReducer";
 import {appReducer} from "../App/appReducer";
+import {adminReducer} from "../common/admin/adminReducer";
 
 // объединяя reducer-ы с помощью combineReducers,
 // мы задаём структуру нашего единственного объекта-состояния
@@ -13,7 +14,8 @@ const rootReducer = combineReducers({
     app: appReducer,
     cards: cardsReducer,
     form: formReducer,
-    sendContact: orderGoodsReducer
+    sendContact: orderGoodsReducer,
+    admin: adminReducer
 });
 
 // непосредственно создаём store / redux-toolkit
