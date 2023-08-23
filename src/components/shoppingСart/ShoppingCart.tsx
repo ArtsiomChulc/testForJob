@@ -18,6 +18,7 @@ export type QuantityState = {
 
 const ShoppingCart = (props: ShoppingCartPropsType) => {
 
+
     if (props.product.length === 0) return <div className={s.noProductText}>No product in cart</div>
     return (
         <div className={s.wrapWrapper}>
@@ -46,7 +47,7 @@ const ShoppingCart = (props: ShoppingCartPropsType) => {
                 <span className={s.total}>Total: {props.totalCost} $</span>
             </div>
             <div className={s.formContainer}>
-                <ContactForm/>
+                <ContactForm product={props.product}/>
             </div>
         </div>
     );

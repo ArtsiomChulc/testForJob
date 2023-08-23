@@ -1,25 +1,25 @@
-import React, {useState} from 'react';
+import React from 'react';
 import s from './orderGoods.module.scss'
 import {Button} from "@mui/material";
 import {Field, InjectedFormProps, reduxForm, reset} from 'redux-form'
-import {supabase} from "../../dataBase/createClient";
-import {uuid} from "@supabase/supabase-js/dist/main/lib/helpers";
 import {AppRootStateType, useAppDispatch} from "../../App/store";
 import {sendContactForm} from "../../common/orderGoodsForm/orderGoodsReducer";
 import {useSelector} from "react-redux";
 import {CardType} from "../../type/types";
-import Loader from "../../common/loader/Loader";
-import PopUp from "../popup/PopUp";
-import {appActions, RequestStatusType} from "../../App/appReducer";
+import {RequestStatusType} from "../../App/appReducer";
 
-export type ContactFormType = {
+export type OrderFormType = {
     name: string
     surname: string
     address: string
     phone: string
 }
 
-let OrderGoods: React.FC<InjectedFormProps<ContactFormType>> = ({
+type ContactFormType = {
+    product: CardType[]
+}
+
+let OrderGoods: React.FC<InjectedFormProps<OrderFormType>> = ({
     handleSubmit,
     }) => {
     const status = useSelector<AppRootStateType, RequestStatusType>(state => state.app.status)
@@ -42,30 +42,28 @@ let OrderGoods: React.FC<InjectedFormProps<ContactFormType>> = ({
     );
 };
 
-const OrderGoodsForm = reduxForm<ContactFormType>({
+const OrderGoodsForm = reduxForm<OrderFormType>({
     form: 'contact'
 })(OrderGoods)
 
 
-export const ContactForm = () => {
-    // const [showPopUp, setShowPopUp] = useState(false);
-
-    // const closePopUp = () => {
-    //     setShowPopUp(false)
-    // }
+export const ContactForm = (props: ContactFormType) => {
+    const {product} = props
 
 
     const dispatch = useAppDispatch()
 
-    const onSubmit = async (formData: ContactFormType) => {
-        dispatch(sendContactForm(formData))
+    const onSubmit = async (formData: OrderFormType) => {
+        const data = {
+            formData: formData,
+            product: product
+        }
+        dispatch(sendContactForm(data))
         dispatch(reset('contact'))
-        // setShowPopUp(true)
     }
 
     return (
         <div className={s.orderWrapper}>
-            {/*{showPopUp && <PopUp onClose={closePopUp} text={'Запрос обрабатывается. Скоро с вами свяжемся'}/>}*/}
             <OrderGoodsForm onSubmit={onSubmit}/>
         </div>
     );

@@ -15,7 +15,7 @@ const CheckOut = (props: PropsType) => {
     return (
         <div className={s.checkOutWrapper}>
             {props.product.length === 0 ? <div className={s.infoTitle}>Вы пока ничего не добавили в корзину. Добавьте что-нибудь</div> : <div className={s.infoTitle}>В вашей корзине: <span>{props.product.length}</span> товаров</div>}
-            <ContactForm/>
+            <ContactForm product={props.product}/>
             <div>
                 <Card data={props.data} disabled={props.disabled} addToCart={props.addToCart}/>
             </div>
