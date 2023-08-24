@@ -1,12 +1,16 @@
-import React, {useEffect} from 'react';
+import React, {ChangeEvent, useEffect, useState} from 'react';
 import {AppRootStateType, useAppDispatch} from "../../App/store";
-import {fetchAdminData} from "../../common/admin/adminReducer";
+import {deleteAdminData, fetchAdminData} from "../../common/admin/adminReducer";
 import {useSelector} from "react-redux";
 import Loader from "../../common/loader/Loader";
 import {AdminType} from "../../type/types";
 import s from './admin.module.scss'
+import {Button, TextField} from "@mui/material";
+import DeleteIcon from '@mui/icons-material/Delete';
 
 const Admin = () => {
+    const [surname, setSurname] = useState<string>('')
+
     const adminData = useSelector<AppRootStateType, AdminType[]>(state => state.admin)
     const dispatch = useAppDispatch()
 
@@ -15,12 +19,27 @@ const Admin = () => {
     }, []);
 
     const brand = adminData.map(br => {
-        return br.brands
+        return br.brands?.map(el => el)
     })
 
-    const priceArr = adminData.map(pr => pr.prices?.reduce((a, b) => a + b))
+    const priceArr = adminData
+        .map(pr => pr.prices?.reduce((a, b) => a + b))
 
-    if (adminData.length === 0) return <Loader/>
+    const deleteDataOnClickHandler = () => {
+        dispatch(deleteAdminData(surname))
+        setSurname('')
+    }
+
+    const onChangeSurname = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+        const valueInput = e.currentTarget.value
+        setSurname(valueInput)
+    }
+
+    if (adminData.length === 0) return <div style={{
+        margin: '100px auto',
+        fontSize: '34px',
+        fontStyle: 'italic'
+    }}>no orders</div>
 
     return (
         <div className={s.adminContainer}>
@@ -34,14 +53,38 @@ const Admin = () => {
                     </div>
                 )
             })}
-            {brand.map(el => {
-                return (
-                    <div>
-                        <span>{el}</span>
-                    </div>
-                )
-            })}
-            <div>{priceArr}</div>
+
+            <div className={s.containerPriceBrand}>
+                Товары:
+                {brand.map(el => {
+                    return (
+                        <div className={s.brandAdmin}>{el?.map(el => {
+                            return (
+                                <span>{el}</span>
+                            )
+                        })}</div>
+                    )
+                })}
+                <div className={s.priceAdmin}>На сумму: {priceArr}</div>
+            </div>
+
+            <div className={s.btnContainer}>
+                <Button
+                    variant="outlined"
+                    startIcon={<DeleteIcon/>}
+                    onClick={deleteDataOnClickHandler}
+                >
+                    Delete data in supabase
+                </Button>
+                <TextField
+                    value={surname}
+                    onChange={onChangeSurname}
+                    id="outlined-textarea"
+                    label="Enter surname"
+                    placeholder="Placeholder"
+                    multiline
+                />
+            </div>
         </div>
     );
 };
