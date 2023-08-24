@@ -11,6 +11,7 @@ import {
     Toolbar,
     useMediaQuery
 } from "@mui/material";
+import SettingsIcon from '@mui/icons-material/Settings';
 import MenuIcon from '@mui/icons-material/Menu';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import {CardType} from "../../type/types";
@@ -39,6 +40,12 @@ const useStyles = makeStyles(() => ({
         textDecoration: 'none',
         fontSize: 'calc(12px + 10 * (100vw / 1440))'
     },
+    linkVer: {
+        color: "black",
+        textDecoration: 'none',
+        fontSize: '22px',
+        padding: '10px 30px'
+    },
     linkBox: {
         display: 'flex',
         gap: '15px',
@@ -49,8 +56,13 @@ const useStyles = makeStyles(() => ({
     burgerBox: {
         marginRight: '5%',
     },
-    menuOpen: {
-
+    cartLength: {
+        marginRight: '10px',
+        fontSize: 'calc(12px + 10 * (100vw / 1440))'
+    },
+    info: {
+        marginLeft: '10px',
+        fontSize: 'calc(12px + 10 * (100vw / 1440))'
     }
 }))
 
@@ -73,6 +85,7 @@ const Header = (props: HeaderPropsType) => {
                         <Link className={styles.linkHor} to={'/product'}>Товары</Link>
                         <Link className={styles.linkHor} to={'/checkout'}>Оформить заказ</Link>
                         <Link className={styles.linkHor} to={'/about'}>О нас</Link>
+                        <Link className={styles.linkHor} to={'/admin'}><SettingsIcon/></Link>
                     </div>}
                     {hiddenIcon ? null : <div className={styles.burgerBox}>
                         <IconButton color={'inherit'} size={'large'}>
@@ -80,44 +93,51 @@ const Header = (props: HeaderPropsType) => {
                         </IconButton>
                     </div>}
 
-                    <span>Amount: <span>{props.cart.length}</span></span>
+                    <span className={styles.cartLength}>Amount: <span>{props.cart.length}</span></span>
                     <Link to={'/shoppingCart'}>
                         <IconButton color="default" aria-label="add to shopping cart">
                             <AddShoppingCartIcon/>
                         </IconButton>
                     </Link>
-                    <span>Total: <span
-                        className={s.info}>{props.totalCost ? props.totalCost : 0} $</span></span>
+                    <span className={styles.info}>Total: <span>{props.totalCost ? props.totalCost : 0} $</span></span>
                 </Toolbar>
             </Container>
-            <SwipeableDrawer
-                className={styles.menuOpen}
-                onOpen={() => {setOpen(true)}}
-                onClose={() => {setOpen(false)}}
-                open={open}
-                anchor={'right'}
-            >
-                <div>
-                    <IconButton>
-                        <ChevronRight onClick={() => setOpen(false)}/>
-                    </IconButton>
-                </div>
-                <Divider/>
-                <List>
-                    <ListItem>
-                        <Link to={'/'}>Главная</Link>
-                    </ListItem>
-                    <ListItem>
-                        <Link to={'/product'}>Товары</Link>
-                    </ListItem>
-                    <ListItem>
-                        <Link to={'/checkout'}>Оформить заказ</Link>
-                    </ListItem>
-                    <ListItem>
-                        <Link to={'/about'}>О нас</Link>
-                    </ListItem>
-                </List>
-            </SwipeableDrawer>
+            <div>
+                <SwipeableDrawer
+                    onOpen={() => {
+                        setOpen(true)
+                    }}
+                    onClose={() => {
+                        setOpen(false)
+                    }}
+                    open={open}
+                    anchor={'right'}
+                >
+                    <div>
+                        <IconButton>
+                            <ChevronRight onClick={() => setOpen(false)}/>
+                        </IconButton>
+                    </div>
+                    <Divider/>
+                    <List>
+                        <ListItem>
+                            <Link className={styles.linkVer} to={'/'}>Главная</Link>
+                        </ListItem>
+                        <ListItem>
+                            <Link className={styles.linkVer} to={'/product'}>Товары</Link>
+                        </ListItem>
+                        <ListItem>
+                            <Link className={styles.linkVer} to={'/checkout'}>Оформить заказ</Link>
+                        </ListItem>
+                        <ListItem>
+                            <Link className={styles.linkVer} to={'/about'}>О нас</Link>
+                        </ListItem>
+                        <ListItem>
+                            <Link className={styles.linkVer} to={'/admin'}><SettingsIcon/></Link>
+                        </ListItem>
+                    </List>
+                </SwipeableDrawer>
+            </div>
         </AppBar>
     );
 };
